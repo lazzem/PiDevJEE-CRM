@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence version="2.1"
+   xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+        http://xmlns.jcp.org/xml/ns/persistence
+        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+   <persistence-unit name="primary">
+      <!-- If you are running in a production environment, add a managed 
+         data source, this example data source is just for development and testing! -->
+      <!-- The datasource is deployed as <EAR>/META-INF/CRM-pi-ds.xml, you
+         can find it in the source at ear/src/main/application/META-INF/CRM-pi-ds.xml -->
+      <jta-data-source>java:jboss/datasources/CRM-piDS</jta-data-source>
+      <class>model.Avis</class>
+      <class>model.Boutique</class>
+      <class>model.Category</class>
+      <class>model.Commande</class>
+      <class>model.Complaint</class>
+      <class>model.Devi</class>
+      <class>model.FicheTechnique_Mobile</class>
+      <class>model.Newslettre</class>
+      <class>model.Offre</class>
+      <class>model.Pack</class>
+      <class>model.PacksProduit</class>
+      <class>model.PacksProduitPK</class>
+      <class>model.Panier</class>
+      <class>model.Produit</class>
+      <class>model.Promotion</class>
+      <class>model.Publicite</class>
+      <class>model.User</class>
+      <properties>
+         <!-- Properties for Hibernate -->
+         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+         <property name="hibernate.show_sql" value="false" />
+      </properties>
+   </persistence-unit>
+</persistence>
