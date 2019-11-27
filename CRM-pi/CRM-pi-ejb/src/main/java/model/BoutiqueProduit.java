@@ -19,22 +19,12 @@ public class BoutiqueProduit implements Serializable {
 	//bi-directional many-to-one association to Boutique
 	@ManyToOne
 	@JoinColumn(name="Id_boutique")
-	private Boutique boutique1;
+	private Boutique boutique;
 
 	//bi-directional many-to-one association to Produit
 	@ManyToOne
 	@JoinColumn(name="Id_produit")
-	private Produit produit1;
-
-	//bi-directional many-to-one association to Boutique
-	@ManyToOne
-	@JoinColumn(name="Id_boutique")
-	private Boutique boutique2;
-
-	//bi-directional many-to-one association to Produit
-	@ManyToOne
-	@JoinColumn(name="Id_produit")
-	private Produit produit2;
+	private Produit produit;
 
 	public BoutiqueProduit() {
 	}
@@ -47,36 +37,20 @@ public class BoutiqueProduit implements Serializable {
 		this.id = id;
 	}
 
-	public Boutique getBoutique1() {
-		return this.boutique1;
+	public Boutique getBoutique() {
+		return this.boutique;
 	}
 
-	public void setBoutique1(Boutique boutique1) {
-		this.boutique1 = boutique1;
+	public void setBoutique(Boutique boutique) {
+		this.boutique = boutique;
 	}
 
-	public Produit getProduit1() {
-		return this.produit1;
+	public Produit getProduit() {
+		return this.produit;
 	}
 
-	public void setProduit1(Produit produit1) {
-		this.produit1 = produit1;
-	}
-
-	public Boutique getBoutique2() {
-		return this.boutique2;
-	}
-
-	public void setBoutique2(Boutique boutique2) {
-		this.boutique2 = boutique2;
-	}
-
-	public Produit getProduit2() {
-		return this.produit2;
-	}
-
-	public void setProduit2(Produit produit2) {
-		this.produit2 = produit2;
+	public void setProduit(Produit produit) {
+		this.produit = produit;
 	}
 
 }

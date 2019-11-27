@@ -42,16 +42,16 @@ public class Produit implements Serializable {
 	private int quantitee;
 
 	//bi-directional many-to-one association to BoutiqueProduit
-	@OneToMany(mappedBy="produit1")
-	private List<BoutiqueProduit> boutiqueProduits1;
+	@OneToMany(mappedBy="produit")
+	private List<BoutiqueProduit> boutiqueProduits;
 
 	//bi-directional many-to-one association to Offre
 	@OneToMany(mappedBy="produit")
 	private List<Offre> offres;
 
 	//bi-directional many-to-one association to PacksProduit
-	@OneToMany(mappedBy="produit1")
-	private List<PacksProduit> packsProduits1;
+	@OneToMany(mappedBy="produit")
+	private List<PacksProduit> packsProduits;
 
 	//bi-directional many-to-one association to Panier
 	@OneToMany(mappedBy="produit")
@@ -69,14 +69,6 @@ public class Produit implements Serializable {
 	//bi-directional many-to-one association to Publicite
 	@OneToMany(mappedBy="produit")
 	private List<Publicite> publicites;
-
-	//bi-directional many-to-one association to BoutiqueProduit
-	@OneToMany(mappedBy="produit2")
-	private List<BoutiqueProduit> boutiqueProduits2;
-
-	//bi-directional many-to-one association to PacksProduit
-	@OneToMany(mappedBy="produit2")
-	private List<PacksProduit> packsProduits2;
 
 	public Produit() {
 	}
@@ -145,26 +137,26 @@ public class Produit implements Serializable {
 		this.quantitee = quantitee;
 	}
 
-	public List<BoutiqueProduit> getBoutiqueProduits1() {
-		return this.boutiqueProduits1;
+	public List<BoutiqueProduit> getBoutiqueProduits() {
+		return this.boutiqueProduits;
 	}
 
-	public void setBoutiqueProduits1(List<BoutiqueProduit> boutiqueProduits1) {
-		this.boutiqueProduits1 = boutiqueProduits1;
+	public void setBoutiqueProduits(List<BoutiqueProduit> boutiqueProduits) {
+		this.boutiqueProduits = boutiqueProduits;
 	}
 
-	public BoutiqueProduit addBoutiqueProduits1(BoutiqueProduit boutiqueProduits1) {
-		getBoutiqueProduits1().add(boutiqueProduits1);
-		boutiqueProduits1.setProduit1(this);
+	public BoutiqueProduit addBoutiqueProduit(BoutiqueProduit boutiqueProduit) {
+		getBoutiqueProduits().add(boutiqueProduit);
+		boutiqueProduit.setProduit(this);
 
-		return boutiqueProduits1;
+		return boutiqueProduit;
 	}
 
-	public BoutiqueProduit removeBoutiqueProduits1(BoutiqueProduit boutiqueProduits1) {
-		getBoutiqueProduits1().remove(boutiqueProduits1);
-		boutiqueProduits1.setProduit1(null);
+	public BoutiqueProduit removeBoutiqueProduit(BoutiqueProduit boutiqueProduit) {
+		getBoutiqueProduits().remove(boutiqueProduit);
+		boutiqueProduit.setProduit(null);
 
-		return boutiqueProduits1;
+		return boutiqueProduit;
 	}
 
 	public List<Offre> getOffres() {
@@ -189,26 +181,26 @@ public class Produit implements Serializable {
 		return offre;
 	}
 
-	public List<PacksProduit> getPacksProduits1() {
-		return this.packsProduits1;
+	public List<PacksProduit> getPacksProduits() {
+		return this.packsProduits;
 	}
 
-	public void setPacksProduits1(List<PacksProduit> packsProduits1) {
-		this.packsProduits1 = packsProduits1;
+	public void setPacksProduits(List<PacksProduit> packsProduits) {
+		this.packsProduits = packsProduits;
 	}
 
-	public PacksProduit addPacksProduits1(PacksProduit packsProduits1) {
-		getPacksProduits1().add(packsProduits1);
-		packsProduits1.setProduit1(this);
+	public PacksProduit addPacksProduit(PacksProduit packsProduit) {
+		getPacksProduits().add(packsProduit);
+		packsProduit.setProduit(this);
 
-		return packsProduits1;
+		return packsProduit;
 	}
 
-	public PacksProduit removePacksProduits1(PacksProduit packsProduits1) {
-		getPacksProduits1().remove(packsProduits1);
-		packsProduits1.setProduit1(null);
+	public PacksProduit removePacksProduit(PacksProduit packsProduit) {
+		getPacksProduits().remove(packsProduit);
+		packsProduit.setProduit(null);
 
-		return packsProduits1;
+		return packsProduit;
 	}
 
 	public List<Panier> getPaniers() {
@@ -283,50 +275,6 @@ public class Produit implements Serializable {
 		publicite.setProduit(null);
 
 		return publicite;
-	}
-
-	public List<BoutiqueProduit> getBoutiqueProduits2() {
-		return this.boutiqueProduits2;
-	}
-
-	public void setBoutiqueProduits2(List<BoutiqueProduit> boutiqueProduits2) {
-		this.boutiqueProduits2 = boutiqueProduits2;
-	}
-
-	public BoutiqueProduit addBoutiqueProduits2(BoutiqueProduit boutiqueProduits2) {
-		getBoutiqueProduits2().add(boutiqueProduits2);
-		boutiqueProduits2.setProduit2(this);
-
-		return boutiqueProduits2;
-	}
-
-	public BoutiqueProduit removeBoutiqueProduits2(BoutiqueProduit boutiqueProduits2) {
-		getBoutiqueProduits2().remove(boutiqueProduits2);
-		boutiqueProduits2.setProduit2(null);
-
-		return boutiqueProduits2;
-	}
-
-	public List<PacksProduit> getPacksProduits2() {
-		return this.packsProduits2;
-	}
-
-	public void setPacksProduits2(List<PacksProduit> packsProduits2) {
-		this.packsProduits2 = packsProduits2;
-	}
-
-	public PacksProduit addPacksProduits2(PacksProduit packsProduits2) {
-		getPacksProduits2().add(packsProduits2);
-		packsProduits2.setProduit2(this);
-
-		return packsProduits2;
-	}
-
-	public PacksProduit removePacksProduits2(PacksProduit packsProduits2) {
-		getPacksProduits2().remove(packsProduits2);
-		packsProduits2.setProduit2(null);
-
-		return packsProduits2;
 	}
 
 }

@@ -48,17 +48,13 @@ public class Boutique implements Serializable {
 	private Object zone;
 
 	//bi-directional many-to-one association to BoutiqueProduit
-	@OneToMany(mappedBy="boutique1")
-	private List<BoutiqueProduit> boutiqueProduits1;
+	@OneToMany(mappedBy="boutique")
+	private List<BoutiqueProduit> boutiqueProduits;
 
 	//bi-directional many-to-one association to Ville
 	@ManyToOne
 	@JoinColumn(name="Id_ville")
 	private Ville ville;
-
-	//bi-directional many-to-one association to BoutiqueProduit
-	@OneToMany(mappedBy="boutique2")
-	private List<BoutiqueProduit> boutiqueProduits2;
 
 	public Boutique() {
 	}
@@ -143,26 +139,26 @@ public class Boutique implements Serializable {
 		this.zone = zone;
 	}
 
-	public List<BoutiqueProduit> getBoutiqueProduits1() {
-		return this.boutiqueProduits1;
+	public List<BoutiqueProduit> getBoutiqueProduits() {
+		return this.boutiqueProduits;
 	}
 
-	public void setBoutiqueProduits1(List<BoutiqueProduit> boutiqueProduits1) {
-		this.boutiqueProduits1 = boutiqueProduits1;
+	public void setBoutiqueProduits(List<BoutiqueProduit> boutiqueProduits) {
+		this.boutiqueProduits = boutiqueProduits;
 	}
 
-	public BoutiqueProduit addBoutiqueProduits1(BoutiqueProduit boutiqueProduits1) {
-		getBoutiqueProduits1().add(boutiqueProduits1);
-		boutiqueProduits1.setBoutique1(this);
+	public BoutiqueProduit addBoutiqueProduit(BoutiqueProduit boutiqueProduit) {
+		getBoutiqueProduits().add(boutiqueProduit);
+		boutiqueProduit.setBoutique(this);
 
-		return boutiqueProduits1;
+		return boutiqueProduit;
 	}
 
-	public BoutiqueProduit removeBoutiqueProduits1(BoutiqueProduit boutiqueProduits1) {
-		getBoutiqueProduits1().remove(boutiqueProduits1);
-		boutiqueProduits1.setBoutique1(null);
+	public BoutiqueProduit removeBoutiqueProduit(BoutiqueProduit boutiqueProduit) {
+		getBoutiqueProduits().remove(boutiqueProduit);
+		boutiqueProduit.setBoutique(null);
 
-		return boutiqueProduits1;
+		return boutiqueProduit;
 	}
 
 	public Ville getVille() {
@@ -171,28 +167,6 @@ public class Boutique implements Serializable {
 
 	public void setVille(Ville ville) {
 		this.ville = ville;
-	}
-
-	public List<BoutiqueProduit> getBoutiqueProduits2() {
-		return this.boutiqueProduits2;
-	}
-
-	public void setBoutiqueProduits2(List<BoutiqueProduit> boutiqueProduits2) {
-		this.boutiqueProduits2 = boutiqueProduits2;
-	}
-
-	public BoutiqueProduit addBoutiqueProduits2(BoutiqueProduit boutiqueProduits2) {
-		getBoutiqueProduits2().add(boutiqueProduits2);
-		boutiqueProduits2.setBoutique2(this);
-
-		return boutiqueProduits2;
-	}
-
-	public BoutiqueProduit removeBoutiqueProduits2(BoutiqueProduit boutiqueProduits2) {
-		getBoutiqueProduits2().remove(boutiqueProduits2);
-		boutiqueProduits2.setBoutique2(null);
-
-		return boutiqueProduits2;
 	}
 
 }

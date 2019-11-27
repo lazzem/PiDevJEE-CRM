@@ -43,12 +43,8 @@ public class Pack implements Serializable {
 	private Object titre;
 
 	//bi-directional many-to-one association to PacksProduit
-	@OneToMany(mappedBy="pack1")
-	private List<PacksProduit> packsProduits1;
-
-	//bi-directional many-to-one association to PacksProduit
-	@OneToMany(mappedBy="pack2")
-	private List<PacksProduit> packsProduits2;
+	@OneToMany(mappedBy="pack")
+	private List<PacksProduit> packsProduits;
 
 	public Pack() {
 	}
@@ -117,48 +113,26 @@ public class Pack implements Serializable {
 		this.titre = titre;
 	}
 
-	public List<PacksProduit> getPacksProduits1() {
-		return this.packsProduits1;
+	public List<PacksProduit> getPacksProduits() {
+		return this.packsProduits;
 	}
 
-	public void setPacksProduits1(List<PacksProduit> packsProduits1) {
-		this.packsProduits1 = packsProduits1;
+	public void setPacksProduits(List<PacksProduit> packsProduits) {
+		this.packsProduits = packsProduits;
 	}
 
-	public PacksProduit addPacksProduits1(PacksProduit packsProduits1) {
-		getPacksProduits1().add(packsProduits1);
-		packsProduits1.setPack1(this);
+	public PacksProduit addPacksProduit(PacksProduit packsProduit) {
+		getPacksProduits().add(packsProduit);
+		packsProduit.setPack(this);
 
-		return packsProduits1;
+		return packsProduit;
 	}
 
-	public PacksProduit removePacksProduits1(PacksProduit packsProduits1) {
-		getPacksProduits1().remove(packsProduits1);
-		packsProduits1.setPack1(null);
+	public PacksProduit removePacksProduit(PacksProduit packsProduit) {
+		getPacksProduits().remove(packsProduit);
+		packsProduit.setPack(null);
 
-		return packsProduits1;
-	}
-
-	public List<PacksProduit> getPacksProduits2() {
-		return this.packsProduits2;
-	}
-
-	public void setPacksProduits2(List<PacksProduit> packsProduits2) {
-		this.packsProduits2 = packsProduits2;
-	}
-
-	public PacksProduit addPacksProduits2(PacksProduit packsProduits2) {
-		getPacksProduits2().add(packsProduits2);
-		packsProduits2.setPack2(this);
-
-		return packsProduits2;
-	}
-
-	public PacksProduit removePacksProduits2(PacksProduit packsProduits2) {
-		getPacksProduits2().remove(packsProduits2);
-		packsProduits2.setPack2(null);
-
-		return packsProduits2;
+		return packsProduit;
 	}
 
 }
