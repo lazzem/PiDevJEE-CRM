@@ -27,10 +27,10 @@ public class Boutique implements Serializable {
 	private Object email;
 
 	@Column(name="Heure_fermeture")
-	private Object heure_fermeture;
+	private String heure_fermeture;
 
 	@Column(name="Heure_ouverture")
-	private Object heure_ouverture;
+	private String heure_ouverture;
 
 	@Column(name="Nom")
 	private Object nom;
@@ -44,15 +44,21 @@ public class Boutique implements Serializable {
 	@Column(name="Service")
 	private Object service;
 
-	@Column(name="Ville")
-	private Object ville;
-
 	@Column(name="Zone")
 	private Object zone;
 
-	//bi-directional many-to-one association to Produit
-	@OneToMany(mappedBy="boutique")
-	private List<Produit> produits;
+	//bi-directional many-to-one association to BoutiqueProduit
+	@OneToMany(mappedBy="boutique1")
+	private List<BoutiqueProduit> boutiqueProduits1;
+
+	//bi-directional many-to-one association to Ville
+	@ManyToOne
+	@JoinColumn(name="Id_ville")
+	private Ville ville;
+
+	//bi-directional many-to-one association to BoutiqueProduit
+	@OneToMany(mappedBy="boutique2")
+	private List<BoutiqueProduit> boutiqueProduits2;
 
 	public Boutique() {
 	}
@@ -81,19 +87,19 @@ public class Boutique implements Serializable {
 		this.email = email;
 	}
 
-	public Object getHeure_fermeture() {
+	public String getHeure_fermeture() {
 		return this.heure_fermeture;
 	}
 
-	public void setHeure_fermeture(Object heure_fermeture) {
+	public void setHeure_fermeture(String heure_fermeture) {
 		this.heure_fermeture = heure_fermeture;
 	}
 
-	public Object getHeure_ouverture() {
+	public String getHeure_ouverture() {
 		return this.heure_ouverture;
 	}
 
-	public void setHeure_ouverture(Object heure_ouverture) {
+	public void setHeure_ouverture(String heure_ouverture) {
 		this.heure_ouverture = heure_ouverture;
 	}
 
@@ -129,14 +135,6 @@ public class Boutique implements Serializable {
 		this.service = service;
 	}
 
-	public Object getVille() {
-		return this.ville;
-	}
-
-	public void setVille(Object ville) {
-		this.ville = ville;
-	}
-
 	public Object getZone() {
 		return this.zone;
 	}
@@ -145,26 +143,56 @@ public class Boutique implements Serializable {
 		this.zone = zone;
 	}
 
-	public List<Produit> getProduits() {
-		return this.produits;
+	public List<BoutiqueProduit> getBoutiqueProduits1() {
+		return this.boutiqueProduits1;
 	}
 
-	public void setProduits(List<Produit> produits) {
-		this.produits = produits;
+	public void setBoutiqueProduits1(List<BoutiqueProduit> boutiqueProduits1) {
+		this.boutiqueProduits1 = boutiqueProduits1;
 	}
 
-	public Produit addProduit(Produit produit) {
-		getProduits().add(produit);
-		produit.setBoutique(this);
+	public BoutiqueProduit addBoutiqueProduits1(BoutiqueProduit boutiqueProduits1) {
+		getBoutiqueProduits1().add(boutiqueProduits1);
+		boutiqueProduits1.setBoutique1(this);
 
-		return produit;
+		return boutiqueProduits1;
 	}
 
-	public Produit removeProduit(Produit produit) {
-		getProduits().remove(produit);
-		produit.setBoutique(null);
+	public BoutiqueProduit removeBoutiqueProduits1(BoutiqueProduit boutiqueProduits1) {
+		getBoutiqueProduits1().remove(boutiqueProduits1);
+		boutiqueProduits1.setBoutique1(null);
 
-		return produit;
+		return boutiqueProduits1;
+	}
+
+	public Ville getVille() {
+		return this.ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
+
+	public List<BoutiqueProduit> getBoutiqueProduits2() {
+		return this.boutiqueProduits2;
+	}
+
+	public void setBoutiqueProduits2(List<BoutiqueProduit> boutiqueProduits2) {
+		this.boutiqueProduits2 = boutiqueProduits2;
+	}
+
+	public BoutiqueProduit addBoutiqueProduits2(BoutiqueProduit boutiqueProduits2) {
+		getBoutiqueProduits2().add(boutiqueProduits2);
+		boutiqueProduits2.setBoutique2(this);
+
+		return boutiqueProduits2;
+	}
+
+	public BoutiqueProduit removeBoutiqueProduits2(BoutiqueProduit boutiqueProduits2) {
+		getBoutiqueProduits2().remove(boutiqueProduits2);
+		boutiqueProduits2.setBoutique2(null);
+
+		return boutiqueProduits2;
 	}
 
 }

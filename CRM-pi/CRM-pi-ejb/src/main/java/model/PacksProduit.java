@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -19,12 +18,24 @@ public class PacksProduit implements Serializable {
 	private PacksProduitPK id;
 
 	//bi-directional many-to-one association to Pack
-	@OneToMany(mappedBy="packsProduit")
-	private List<Pack> packs;
+	@ManyToOne
+	@JoinColumn(name="Packs_IdPack")
+	private Pack pack1;
 
 	//bi-directional many-to-one association to Produit
-	@OneToMany(mappedBy="packsProduit")
-	private List<Produit> produits;
+	@ManyToOne
+	@JoinColumn(name="Produit_Id_produit")
+	private Produit produit1;
+
+	//bi-directional many-to-one association to Pack
+	@ManyToOne
+	@JoinColumn(name="Packs_IdPack")
+	private Pack pack2;
+
+	//bi-directional many-to-one association to Produit
+	@ManyToOne
+	@JoinColumn(name="Produit_Id_produit")
+	private Produit produit2;
 
 	public PacksProduit() {
 	}
@@ -37,48 +48,36 @@ public class PacksProduit implements Serializable {
 		this.id = id;
 	}
 
-	public List<Pack> getPacks() {
-		return this.packs;
+	public Pack getPack1() {
+		return this.pack1;
 	}
 
-	public void setPacks(List<Pack> packs) {
-		this.packs = packs;
+	public void setPack1(Pack pack1) {
+		this.pack1 = pack1;
 	}
 
-	public Pack addPack(Pack pack) {
-		getPacks().add(pack);
-		pack.setPacksProduit(this);
-
-		return pack;
+	public Produit getProduit1() {
+		return this.produit1;
 	}
 
-	public Pack removePack(Pack pack) {
-		getPacks().remove(pack);
-		pack.setPacksProduit(null);
-
-		return pack;
+	public void setProduit1(Produit produit1) {
+		this.produit1 = produit1;
 	}
 
-	public List<Produit> getProduits() {
-		return this.produits;
+	public Pack getPack2() {
+		return this.pack2;
 	}
 
-	public void setProduits(List<Produit> produits) {
-		this.produits = produits;
+	public void setPack2(Pack pack2) {
+		this.pack2 = pack2;
 	}
 
-	public Produit addProduit(Produit produit) {
-		getProduits().add(produit);
-		produit.setPacksProduit(this);
-
-		return produit;
+	public Produit getProduit2() {
+		return this.produit2;
 	}
 
-	public Produit removeProduit(Produit produit) {
-		getProduits().remove(produit);
-		produit.setPacksProduit(null);
-
-		return produit;
+	public void setProduit2(Produit produit2) {
+		this.produit2 = produit2;
 	}
 
 }

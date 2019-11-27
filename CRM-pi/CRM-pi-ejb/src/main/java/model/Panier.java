@@ -27,9 +27,9 @@ public class Panier implements Serializable {
 	@OneToMany(mappedBy="panier")
 	private List<Commande> commandes;
 
-	//bi-directional many-to-one association to Devi
+	//bi-directional many-to-one association to Devis
 	@OneToMany(mappedBy="panier")
-	private List<Devi> devis;
+	private List<Devis> devis;
 
 	//bi-directional many-to-one association to Produit
 	@ManyToOne
@@ -82,22 +82,22 @@ public class Panier implements Serializable {
 		return commande;
 	}
 
-	public List<Devi> getDevis() {
+	public List<Devis> getDevis() {
 		return this.devis;
 	}
 
-	public void setDevis(List<Devi> devis) {
+	public void setDevis(List<Devis> devis) {
 		this.devis = devis;
 	}
 
-	public Devi addDevi(Devi devi) {
+	public Devis addDevi(Devis devi) {
 		getDevis().add(devi);
 		devi.setPanier(this);
 
 		return devi;
 	}
 
-	public Devi removeDevi(Devi devi) {
+	public Devis removeDevi(Devis devi) {
 		getDevis().remove(devi);
 		devi.setPanier(null);
 
