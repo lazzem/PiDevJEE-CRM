@@ -41,6 +41,10 @@ public class Produit implements Serializable {
 	@Column(name="Quantitee")
 	private int quantitee;
 
+	//bi-directional many-to-one association to Devi
+	@OneToMany(mappedBy="produit")
+	private List<Devi> devis;
+
 	//bi-directional many-to-one association to Offre
 	@OneToMany(mappedBy="produit")
 	private List<Offre> offres;
@@ -49,33 +53,10 @@ public class Produit implements Serializable {
 	@OneToMany(mappedBy="produit")
 	private List<Panier> paniers;
 
-	//bi-directional many-to-one association to Boutique
-	@ManyToOne
-	@JoinColumn(name="Id_boutique")
-	private Boutique boutique;
-
 	//bi-directional many-to-one association to Category
 	@ManyToOne
 	@JoinColumn(name="Id_categorie")
 	private Category category;
-
-	//bi-directional many-to-one association to FicheTechnique_Mobile
-	@ManyToOne
-	@JoinColumn(name="Id_fichemobile")
-	private FicheTechnique_Mobile ficheTechniqueMobile;
-
-	//bi-directional many-to-many association to Pack
-	@ManyToMany
-	@JoinTable(
-		name="PacksProduits"
-		, joinColumns={
-			@JoinColumn(name="Produit_Id_produit")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Packs_IdPack")
-			}
-		)
-	private List<Pack> packs;
 
 	//bi-directional many-to-one association to Promotion
 	@OneToMany(mappedBy="produit")
@@ -85,10 +66,13 @@ public class Produit implements Serializable {
 	@OneToMany(mappedBy="produit")
 	private List<Publicite> publicites;
 
+	//bi-directional many-to-one association to Stock
+	@OneToMany(mappedBy="produit")
+	private List<Stock> stocks;
+
 	//bi-directional many-to-one association to PacksProduit
-	@ManyToOne
-	@JoinColumn(name="Id_produit", referencedColumnName="Produit_Id_produit")
-	private PacksProduit packsProduit;
+	@OneToMany(mappedBy="produit")
+	private List<PacksProduit> packsProduits;
 
 	public Produit() {
 	}
@@ -157,6 +141,28 @@ public class Produit implements Serializable {
 		this.quantitee = quantitee;
 	}
 
+	public List<Devi> getDevis() {
+		return this.devis;
+	}
+
+	public void setDevis(List<Devi> devis) {
+		this.devis = devis;
+	}
+
+	public Devi addDevi(Devi devi) {
+		getDevis().add(devi);
+		devi.setProduit(this);
+
+		return devi;
+	}
+
+	public Devi removeDevi(Devi devi) {
+		getDevis().remove(devi);
+		devi.setProduit(null);
+
+		return devi;
+	}
+
 	public List<Offre> getOffres() {
 		return this.offres;
 	}
@@ -201,36 +207,12 @@ public class Produit implements Serializable {
 		return panier;
 	}
 
-	public Boutique getBoutique() {
-		return this.boutique;
-	}
-
-	public void setBoutique(Boutique boutique) {
-		this.boutique = boutique;
-	}
-
 	public Category getCategory() {
 		return this.category;
 	}
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-	public FicheTechnique_Mobile getFicheTechniqueMobile() {
-		return this.ficheTechniqueMobile;
-	}
-
-	public void setFicheTechniqueMobile(FicheTechnique_Mobile ficheTechniqueMobile) {
-		this.ficheTechniqueMobile = ficheTechniqueMobile;
-	}
-
-	public List<Pack> getPacks() {
-		return this.packs;
-	}
-
-	public void setPacks(List<Pack> packs) {
-		this.packs = packs;
 	}
 
 	public List<Promotion> getPromotions() {
@@ -277,12 +259,48 @@ public class Produit implements Serializable {
 		return publicite;
 	}
 
-	public PacksProduit getPacksProduit() {
-		return this.packsProduit;
+	public List<Stock> getStocks() {
+		return this.stocks;
 	}
 
-	public void setPacksProduit(PacksProduit packsProduit) {
-		this.packsProduit = packsProduit;
+	public void setStocks(List<Stock> stocks) {
+		this.stocks = stocks;
+	}
+
+	public Stock addStock(Stock stock) {
+		getStocks().add(stock);
+		stock.setProduit(this);
+
+		return stock;
+	}
+
+	public Stock removeStock(Stock stock) {
+		getStocks().remove(stock);
+		stock.setProduit(null);
+
+		return stock;
+	}
+
+	public List<PacksProduit> getPacksProduits() {
+		return this.packsProduits;
+	}
+
+	public void setPacksProduits(List<PacksProduit> packsProduits) {
+		this.packsProduits = packsProduits;
+	}
+
+	public PacksProduit addPacksProduit(PacksProduit packsProduit) {
+		getPacksProduits().add(packsProduit);
+		packsProduit.setProduit(this);
+
+		return packsProduit;
+	}
+
+	public PacksProduit removePacksProduit(PacksProduit packsProduit) {
+		getPacksProduits().remove(packsProduit);
+		packsProduit.setProduit(null);
+
+		return packsProduit;
 	}
 
 }

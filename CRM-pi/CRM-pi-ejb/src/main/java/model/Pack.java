@@ -42,14 +42,9 @@ public class Pack implements Serializable {
 	@Column(name="Titre")
 	private Object titre;
 
-	//bi-directional many-to-many association to Produit
-	@ManyToMany(mappedBy="packs")
-	private List<Produit> produits;
-
 	//bi-directional many-to-one association to PacksProduit
-	@ManyToOne
-	@JoinColumn(name="IdPack", referencedColumnName="Packs_IdPack")
-	private PacksProduit packsProduit;
+	@OneToMany(mappedBy="pack")
+	private List<PacksProduit> packsProduits;
 
 	public Pack() {
 	}
@@ -118,20 +113,26 @@ public class Pack implements Serializable {
 		this.titre = titre;
 	}
 
-	public List<Produit> getProduits() {
-		return this.produits;
+	public List<PacksProduit> getPacksProduits() {
+		return this.packsProduits;
 	}
 
-	public void setProduits(List<Produit> produits) {
-		this.produits = produits;
+	public void setPacksProduits(List<PacksProduit> packsProduits) {
+		this.packsProduits = packsProduits;
 	}
 
-	public PacksProduit getPacksProduit() {
-		return this.packsProduit;
+	public PacksProduit addPacksProduit(PacksProduit packsProduit) {
+		getPacksProduits().add(packsProduit);
+		packsProduit.setPack(this);
+
+		return packsProduit;
 	}
 
-	public void setPacksProduit(PacksProduit packsProduit) {
-		this.packsProduit = packsProduit;
+	public PacksProduit removePacksProduit(PacksProduit packsProduit) {
+		getPacksProduits().remove(packsProduit);
+		packsProduit.setPack(null);
+
+		return packsProduit;
 	}
 
 }

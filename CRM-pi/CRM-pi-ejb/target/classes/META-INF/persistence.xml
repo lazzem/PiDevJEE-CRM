@@ -12,7 +12,7 @@
       <!-- The datasource is deployed as <EAR>/META-INF/CRM-pi-ds.xml, you
          can find it in the source at ear/src/main/application/META-INF/CRM-pi-ds.xml -->
       <jta-data-source>java:jboss/datasources/CRM-piDS</jta-data-source>
-      <class>model.Avis</class>
+      <class>model.Avi</class>
       <class>model.Boutique</class>
       <class>model.Category</class>
       <class>model.Commande</class>
@@ -28,7 +28,10 @@
       <class>model.Produit</class>
       <class>model.Promotion</class>
       <class>model.Publicite</class>
+      <class>model.Stock</class>
+      <class>model.TypeRec</class>
       <class>model.User</class>
+      <class>model.Ville</class>
       <properties>
          <!-- Properties for Hibernate -->
          <property name="hibernate.hbm2ddl.auto" value="create-drop" />

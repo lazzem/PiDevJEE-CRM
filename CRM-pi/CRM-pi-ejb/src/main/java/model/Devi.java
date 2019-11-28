@@ -20,8 +20,8 @@ public class Devi implements Serializable {
 	@Column(name="IdDevis")
 	private int idDevis;
 
-	@Column(name="DateCommande")
-	private Timestamp dateCommande;
+	@Column(name="DateDevis")
+	private Timestamp dateDevis;
 
 	@Column(name="Description")
 	private Object description;
@@ -35,10 +35,10 @@ public class Devi implements Serializable {
 	@Column(name="Status")
 	private Object status;
 
-	//bi-directional many-to-one association to Panier
+	//bi-directional many-to-one association to Produit
 	@ManyToOne
-	@JoinColumn(name="IdPanier")
-	private Panier panier;
+	@JoinColumn(name="IdProduit")
+	private Produit produit;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
@@ -56,12 +56,12 @@ public class Devi implements Serializable {
 		this.idDevis = idDevis;
 	}
 
-	public Timestamp getDateCommande() {
-		return this.dateCommande;
+	public Timestamp getDateDevis() {
+		return this.dateDevis;
 	}
 
-	public void setDateCommande(Timestamp dateCommande) {
-		this.dateCommande = dateCommande;
+	public void setDateDevis(Timestamp dateDevis) {
+		this.dateDevis = dateDevis;
 	}
 
 	public Object getDescription() {
@@ -96,12 +96,12 @@ public class Devi implements Serializable {
 		this.status = status;
 	}
 
-	public Panier getPanier() {
-		return this.panier;
+	public Produit getProduit() {
+		return this.produit;
 	}
 
-	public void setPanier(Panier panier) {
-		this.panier = panier;
+	public void setProduit(Produit produit) {
+		this.produit = produit;
 	}
 
 	public User getUser() {

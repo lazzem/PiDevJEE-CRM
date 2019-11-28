@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -18,13 +17,15 @@ public class PacksProduit implements Serializable {
 	@EmbeddedId
 	private PacksProduitPK id;
 
-	//bi-directional many-to-one association to Pack
-	@OneToMany(mappedBy="packsProduit")
-	private List<Pack> packs;
-
 	//bi-directional many-to-one association to Produit
-	@OneToMany(mappedBy="packsProduit")
-	private List<Produit> produits;
+	@ManyToOne
+	@JoinColumn(name="Produit_Id_produit")
+	private Produit produit;
+
+	//bi-directional many-to-one association to Pack
+	@ManyToOne
+	@JoinColumn(name="Packs_IdPack")
+	private Pack pack;
 
 	public PacksProduit() {
 	}
@@ -37,48 +38,20 @@ public class PacksProduit implements Serializable {
 		this.id = id;
 	}
 
-	public List<Pack> getPacks() {
-		return this.packs;
+	public Produit getProduit() {
+		return this.produit;
 	}
 
-	public void setPacks(List<Pack> packs) {
-		this.packs = packs;
+	public void setProduit(Produit produit) {
+		this.produit = produit;
 	}
 
-	public Pack addPack(Pack pack) {
-		getPacks().add(pack);
-		pack.setPacksProduit(this);
-
-		return pack;
+	public Pack getPack() {
+		return this.pack;
 	}
 
-	public Pack removePack(Pack pack) {
-		getPacks().remove(pack);
-		pack.setPacksProduit(null);
-
-		return pack;
-	}
-
-	public List<Produit> getProduits() {
-		return this.produits;
-	}
-
-	public void setProduits(List<Produit> produits) {
-		this.produits = produits;
-	}
-
-	public Produit addProduit(Produit produit) {
-		getProduits().add(produit);
-		produit.setPacksProduit(this);
-
-		return produit;
-	}
-
-	public Produit removeProduit(Produit produit) {
-		getProduits().remove(produit);
-		produit.setPacksProduit(null);
-
-		return produit;
+	public void setPack(Pack pack) {
+		this.pack = pack;
 	}
 
 }

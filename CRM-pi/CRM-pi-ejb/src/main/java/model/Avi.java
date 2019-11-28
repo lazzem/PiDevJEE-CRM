@@ -10,8 +10,9 @@ import java.sql.Timestamp;
  * 
  */
 @Entity
-@NamedQuery(name="Avis.findAll", query="SELECT a FROM Avis a")
-public class Avis implements Serializable {
+@Table(name="Avis")
+@NamedQuery(name="Avi.findAll", query="SELECT a FROM Avi a")
+public class Avi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,7 +26,7 @@ public class Avis implements Serializable {
 	@Column(name="Description")
 	private Object description;
 
-	public Avis() {
+	public Avi() {
 	}
 
 	public int getIdView() {

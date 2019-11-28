@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -81,10 +80,6 @@ public class FicheTechnique_Mobile implements Serializable {
 
 	@Column(name="Soc")
 	private Object soc;
-
-	//bi-directional many-to-one association to Produit
-	@OneToMany(mappedBy="ficheTechniqueMobile")
-	private List<Produit> produits;
 
 	public FicheTechnique_Mobile() {
 	}
@@ -263,28 +258,6 @@ public class FicheTechnique_Mobile implements Serializable {
 
 	public void setSoc(Object soc) {
 		this.soc = soc;
-	}
-
-	public List<Produit> getProduits() {
-		return this.produits;
-	}
-
-	public void setProduits(List<Produit> produits) {
-		this.produits = produits;
-	}
-
-	public Produit addProduit(Produit produit) {
-		getProduits().add(produit);
-		produit.setFicheTechniqueMobile(this);
-
-		return produit;
-	}
-
-	public Produit removeProduit(Produit produit) {
-		getProduits().remove(produit);
-		produit.setFicheTechniqueMobile(null);
-
-		return produit;
 	}
 
 }

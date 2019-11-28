@@ -23,13 +23,11 @@ public class Commande implements Serializable {
 	@Column(name="DateCommand")
 	private Timestamp dateCommand;
 
+	@Column(name="Description")
+	private Object description;
+
 	@Column(name="PrixTotal")
 	private float prixTotal;
-
-	//bi-directional many-to-one association to Panier
-	@ManyToOne
-	@JoinColumn(name="IdPanier")
-	private Panier panier;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
@@ -55,20 +53,20 @@ public class Commande implements Serializable {
 		this.dateCommand = dateCommand;
 	}
 
+	public Object getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(Object description) {
+		this.description = description;
+	}
+
 	public float getPrixTotal() {
 		return this.prixTotal;
 	}
 
 	public void setPrixTotal(float prixTotal) {
 		this.prixTotal = prixTotal;
-	}
-
-	public Panier getPanier() {
-		return this.panier;
-	}
-
-	public void setPanier(Panier panier) {
-		this.panier = panier;
 	}
 
 	public User getUser() {

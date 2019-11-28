@@ -27,10 +27,10 @@ public class Boutique implements Serializable {
 	private Object email;
 
 	@Column(name="Heure_fermeture")
-	private Object heure_fermeture;
+	private String heure_fermeture;
 
 	@Column(name="Heure_ouverture")
-	private Object heure_ouverture;
+	private String heure_ouverture;
 
 	@Column(name="Nom")
 	private Object nom;
@@ -44,15 +44,17 @@ public class Boutique implements Serializable {
 	@Column(name="Service")
 	private Object service;
 
-	@Column(name="Ville")
-	private Object ville;
-
 	@Column(name="Zone")
 	private Object zone;
 
-	//bi-directional many-to-one association to Produit
+	//bi-directional many-to-one association to Ville
+	@ManyToOne
+	@JoinColumn(name="Id_ville")
+	private Ville ville;
+
+	//bi-directional many-to-one association to Stock
 	@OneToMany(mappedBy="boutique")
-	private List<Produit> produits;
+	private List<Stock> stocks;
 
 	public Boutique() {
 	}
@@ -81,19 +83,19 @@ public class Boutique implements Serializable {
 		this.email = email;
 	}
 
-	public Object getHeure_fermeture() {
+	public String getHeure_fermeture() {
 		return this.heure_fermeture;
 	}
 
-	public void setHeure_fermeture(Object heure_fermeture) {
+	public void setHeure_fermeture(String heure_fermeture) {
 		this.heure_fermeture = heure_fermeture;
 	}
 
-	public Object getHeure_ouverture() {
+	public String getHeure_ouverture() {
 		return this.heure_ouverture;
 	}
 
-	public void setHeure_ouverture(Object heure_ouverture) {
+	public void setHeure_ouverture(String heure_ouverture) {
 		this.heure_ouverture = heure_ouverture;
 	}
 
@@ -129,14 +131,6 @@ public class Boutique implements Serializable {
 		this.service = service;
 	}
 
-	public Object getVille() {
-		return this.ville;
-	}
-
-	public void setVille(Object ville) {
-		this.ville = ville;
-	}
-
 	public Object getZone() {
 		return this.zone;
 	}
@@ -145,26 +139,34 @@ public class Boutique implements Serializable {
 		this.zone = zone;
 	}
 
-	public List<Produit> getProduits() {
-		return this.produits;
+	public Ville getVille() {
+		return this.ville;
 	}
 
-	public void setProduits(List<Produit> produits) {
-		this.produits = produits;
+	public void setVille(Ville ville) {
+		this.ville = ville;
 	}
 
-	public Produit addProduit(Produit produit) {
-		getProduits().add(produit);
-		produit.setBoutique(this);
-
-		return produit;
+	public List<Stock> getStocks() {
+		return this.stocks;
 	}
 
-	public Produit removeProduit(Produit produit) {
-		getProduits().remove(produit);
-		produit.setBoutique(null);
+	public void setStocks(List<Stock> stocks) {
+		this.stocks = stocks;
+	}
 
-		return produit;
+	public Stock addStock(Stock stock) {
+		getStocks().add(stock);
+		stock.setBoutique(this);
+
+		return stock;
+	}
+
+	public Stock removeStock(Stock stock) {
+		getStocks().remove(stock);
+		stock.setBoutique(null);
+
+		return stock;
 	}
 
 }
