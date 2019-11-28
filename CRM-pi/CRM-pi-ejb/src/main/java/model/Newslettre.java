@@ -27,7 +27,7 @@ public class Newslettre implements Serializable {
 
 	@Column(name="PhoneUser")
 	private int phoneUser;
-	
+	//ss
 	@Column(name="status")
 	private boolean status;
 
