@@ -47,8 +47,8 @@ public class Newslettre implements Serializable {
 		this.idNewslettre = idNewslettre;
 	}
 	
-	public int getStatus() {
-		return this.status;
+	public boolean getStatus() {
+		return status;
 	}
 
 	public void setStatus(boolean status) {
@@ -68,7 +68,7 @@ public class Newslettre implements Serializable {
 		return this.mailUser;
 	}
 
-	public void setMailUser(Object mailUser) {
+	public void setMailUser(String mailUser) {
 		this.mailUser = mailUser;
 	}
 
