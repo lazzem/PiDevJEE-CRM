@@ -41,9 +41,9 @@ public class Produit implements Serializable {
 	@Column(name="Quantitee")
 	private int quantitee;
 
-	//bi-directional many-to-one association to BoutiqueProduit
+	//bi-directional many-to-one association to Devi
 	@OneToMany(mappedBy="produit")
-	private List<BoutiqueProduit> boutiqueProduits;
+	private List<Devi> devis;
 
 	//bi-directional many-to-one association to Offre
 	@OneToMany(mappedBy="produit")
@@ -69,6 +69,10 @@ public class Produit implements Serializable {
 	//bi-directional many-to-one association to Publicite
 	@OneToMany(mappedBy="produit")
 	private List<Publicite> publicites;
+
+	//bi-directional many-to-one association to Stock
+	@OneToMany(mappedBy="produit")
+	private List<Stock> stocks;
 
 	public Produit() {
 	}
@@ -137,26 +141,26 @@ public class Produit implements Serializable {
 		this.quantitee = quantitee;
 	}
 
-	public List<BoutiqueProduit> getBoutiqueProduits() {
-		return this.boutiqueProduits;
+	public List<Devi> getDevis() {
+		return this.devis;
 	}
 
-	public void setBoutiqueProduits(List<BoutiqueProduit> boutiqueProduits) {
-		this.boutiqueProduits = boutiqueProduits;
+	public void setDevis(List<Devi> devis) {
+		this.devis = devis;
 	}
 
-	public BoutiqueProduit addBoutiqueProduit(BoutiqueProduit boutiqueProduit) {
-		getBoutiqueProduits().add(boutiqueProduit);
-		boutiqueProduit.setProduit(this);
+	public Devi addDevi(Devi devi) {
+		getDevis().add(devi);
+		devi.setProduit(this);
 
-		return boutiqueProduit;
+		return devi;
 	}
 
-	public BoutiqueProduit removeBoutiqueProduit(BoutiqueProduit boutiqueProduit) {
-		getBoutiqueProduits().remove(boutiqueProduit);
-		boutiqueProduit.setProduit(null);
+	public Devi removeDevi(Devi devi) {
+		getDevis().remove(devi);
+		devi.setProduit(null);
 
-		return boutiqueProduit;
+		return devi;
 	}
 
 	public List<Offre> getOffres() {
@@ -275,6 +279,28 @@ public class Produit implements Serializable {
 		publicite.setProduit(null);
 
 		return publicite;
+	}
+
+	public List<Stock> getStocks() {
+		return this.stocks;
+	}
+
+	public void setStocks(List<Stock> stocks) {
+		this.stocks = stocks;
+	}
+
+	public Stock addStock(Stock stock) {
+		getStocks().add(stock);
+		stock.setProduit(this);
+
+		return stock;
+	}
+
+	public Stock removeStock(Stock stock) {
+		getStocks().remove(stock);
+		stock.setProduit(null);
+
+		return stock;
 	}
 
 }

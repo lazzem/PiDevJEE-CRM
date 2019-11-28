@@ -47,14 +47,14 @@ public class Boutique implements Serializable {
 	@Column(name="Zone")
 	private Object zone;
 
-	//bi-directional many-to-one association to BoutiqueProduit
-	@OneToMany(mappedBy="boutique")
-	private List<BoutiqueProduit> boutiqueProduits;
-
 	//bi-directional many-to-one association to Ville
 	@ManyToOne
 	@JoinColumn(name="Id_ville")
 	private Ville ville;
+
+	//bi-directional many-to-one association to Stock
+	@OneToMany(mappedBy="boutique")
+	private List<Stock> stocks;
 
 	public Boutique() {
 	}
@@ -139,34 +139,34 @@ public class Boutique implements Serializable {
 		this.zone = zone;
 	}
 
-	public List<BoutiqueProduit> getBoutiqueProduits() {
-		return this.boutiqueProduits;
-	}
-
-	public void setBoutiqueProduits(List<BoutiqueProduit> boutiqueProduits) {
-		this.boutiqueProduits = boutiqueProduits;
-	}
-
-	public BoutiqueProduit addBoutiqueProduit(BoutiqueProduit boutiqueProduit) {
-		getBoutiqueProduits().add(boutiqueProduit);
-		boutiqueProduit.setBoutique(this);
-
-		return boutiqueProduit;
-	}
-
-	public BoutiqueProduit removeBoutiqueProduit(BoutiqueProduit boutiqueProduit) {
-		getBoutiqueProduits().remove(boutiqueProduit);
-		boutiqueProduit.setBoutique(null);
-
-		return boutiqueProduit;
-	}
-
 	public Ville getVille() {
 		return this.ville;
 	}
 
 	public void setVille(Ville ville) {
 		this.ville = ville;
+	}
+
+	public List<Stock> getStocks() {
+		return this.stocks;
+	}
+
+	public void setStocks(List<Stock> stocks) {
+		this.stocks = stocks;
+	}
+
+	public Stock addStock(Stock stock) {
+		getStocks().add(stock);
+		stock.setBoutique(this);
+
+		return stock;
+	}
+
+	public Stock removeStock(Stock stock) {
+		getStocks().remove(stock);
+		stock.setBoutique(null);
+
+		return stock;
 	}
 
 }

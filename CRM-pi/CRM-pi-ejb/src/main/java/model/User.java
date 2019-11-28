@@ -67,9 +67,9 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private List<Commande> commandes;
 
-	//bi-directional many-to-one association to Devis
+	//bi-directional many-to-one association to Devi
 	@OneToMany(mappedBy="user")
-	private List<Devis> devis;
+	private List<Devi> devis;
 
 	//bi-directional many-to-one association to Newslettre
 	@OneToMany(mappedBy="user")
@@ -224,22 +224,22 @@ public class User implements Serializable {
 		return commande;
 	}
 
-	public List<Devis> getDevis() {
+	public List<Devi> getDevis() {
 		return this.devis;
 	}
 
-	public void setDevis(List<Devis> devis) {
+	public void setDevis(List<Devi> devis) {
 		this.devis = devis;
 	}
 
-	public Devis addDevi(Devis devi) {
+	public Devi addDevi(Devi devi) {
 		getDevis().add(devi);
 		devi.setUser(this);
 
 		return devi;
 	}
 
-	public Devis removeDevi(Devis devi) {
+	public Devi removeDevi(Devi devi) {
 		getDevis().remove(devi);
 		devi.setUser(null);
 

@@ -5,16 +5,22 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the BoutiqueProduit database table.
+ * The persistent class for the Stocks database table.
  * 
  */
 @Entity
-@NamedQuery(name="BoutiqueProduit.findAll", query="SELECT b FROM BoutiqueProduit b")
-public class BoutiqueProduit implements Serializable {
+@Table(name="Stocks")
+@NamedQuery(name="Stock.findAll", query="SELECT s FROM Stock s")
+public class Stock implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private BoutiqueProduitPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="Id_stock")
+	private int id_stock;
+
+	@Column(name="Stock_produit")
+	private int stock_produit;
 
 	//bi-directional many-to-one association to Boutique
 	@ManyToOne
@@ -26,15 +32,23 @@ public class BoutiqueProduit implements Serializable {
 	@JoinColumn(name="Id_produit")
 	private Produit produit;
 
-	public BoutiqueProduit() {
+	public Stock() {
 	}
 
-	public BoutiqueProduitPK getId() {
-		return this.id;
+	public int getId_stock() {
+		return this.id_stock;
 	}
 
-	public void setId(BoutiqueProduitPK id) {
-		this.id = id;
+	public void setId_stock(int id_stock) {
+		this.id_stock = id_stock;
+	}
+
+	public int getStock_produit() {
+		return this.stock_produit;
+	}
+
+	public void setStock_produit(int stock_produit) {
+		this.stock_produit = stock_produit;
 	}
 
 	public Boutique getBoutique() {

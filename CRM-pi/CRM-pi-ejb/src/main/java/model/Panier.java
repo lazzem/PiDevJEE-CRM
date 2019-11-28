@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -22,14 +21,6 @@ public class Panier implements Serializable {
 
 	@Column(name="Quantite")
 	private int quantite;
-
-	//bi-directional many-to-one association to Commande
-	@OneToMany(mappedBy="panier")
-	private List<Commande> commandes;
-
-	//bi-directional many-to-one association to Devis
-	@OneToMany(mappedBy="panier")
-	private List<Devis> devis;
 
 	//bi-directional many-to-one association to Produit
 	@ManyToOne
@@ -58,50 +49,6 @@ public class Panier implements Serializable {
 
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
-	}
-
-	public List<Commande> getCommandes() {
-		return this.commandes;
-	}
-
-	public void setCommandes(List<Commande> commandes) {
-		this.commandes = commandes;
-	}
-
-	public Commande addCommande(Commande commande) {
-		getCommandes().add(commande);
-		commande.setPanier(this);
-
-		return commande;
-	}
-
-	public Commande removeCommande(Commande commande) {
-		getCommandes().remove(commande);
-		commande.setPanier(null);
-
-		return commande;
-	}
-
-	public List<Devis> getDevis() {
-		return this.devis;
-	}
-
-	public void setDevis(List<Devis> devis) {
-		this.devis = devis;
-	}
-
-	public Devis addDevi(Devis devi) {
-		getDevis().add(devi);
-		devi.setPanier(this);
-
-		return devi;
-	}
-
-	public Devis removeDevi(Devis devi) {
-		getDevis().remove(devi);
-		devi.setPanier(null);
-
-		return devi;
 	}
 
 	public Produit getProduit() {
