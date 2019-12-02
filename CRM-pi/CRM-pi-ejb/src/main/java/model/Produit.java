@@ -21,19 +21,19 @@ public class Produit implements Serializable {
 	private int id_produit;
 
 	@Column(name="Description")
-	private Object description;
+	private String description;
 
 	@Column(name="IdPack")
 	private int idPack;
 
 	@Column(name="Image")
-	private Object image;
+	private String image;
 
 	@Column(name="Libelle")
-	private Object libelle;
+	private String libelle;
 
 	@Column(name="Nom")
-	private Object nom;
+	private String nom;
 
 	@Column(name="Price")
 	private float price;
@@ -85,11 +85,11 @@ public class Produit implements Serializable {
 		this.id_produit = id_produit;
 	}
 
-	public Object getDescription() {
+	public String getDescription() {
 		return this.description;
 	}
 
-	public void setDescription(Object description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
@@ -101,27 +101,27 @@ public class Produit implements Serializable {
 		this.idPack = idPack;
 	}
 
-	public Object getImage() {
+	public String getImage() {
 		return this.image;
 	}
 
-	public void setImage(Object image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
-	public Object getLibelle() {
+	public String getLibelle() {
 		return this.libelle;
 	}
 
-	public void setLibelle(Object libelle) {
+	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
 
-	public Object getNom() {
+	public String getNom() {
 		return this.nom;
 	}
 
-	public void setNom(Object nom) {
+	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
