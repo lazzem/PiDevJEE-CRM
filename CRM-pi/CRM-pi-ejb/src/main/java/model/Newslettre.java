@@ -23,10 +23,13 @@ public class Newslettre implements Serializable {
 	private int idUser;
 
 	@Column(name="MailUser")
-	private Object mailUser;
+	private String mailUser;
 
 	@Column(name="PhoneUser")
 	private int phoneUser;
+	//ss
+	@Column(name="status")
+	private boolean status;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
@@ -43,6 +46,15 @@ public class Newslettre implements Serializable {
 	public void setIdNewslettre(int idNewslettre) {
 		this.idNewslettre = idNewslettre;
 	}
+	
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 
 	public int getIdUser() {
 		return this.idUser;
@@ -56,7 +68,7 @@ public class Newslettre implements Serializable {
 		return this.mailUser;
 	}
 
-	public void setMailUser(Object mailUser) {
+	public void setMailUser(String mailUser) {
 		this.mailUser = mailUser;
 	}
 
